@@ -1,0 +1,45 @@
+# Start Here — PyMason (AI / Human Directors)
+
+## Operating law
+
+1. Read **[SOUL.md](SOUL.md)** (Empire Constitution). Non-negotiable.
+2. Product intent: **[PYMASON_VISION.md](PYMASON_VISION.md)**
+3. Task board: **[PYMASON_TODO.md](PYMASON_TODO.md)**
+4. Quality snapshot: **[AUDIT.md](AUDIT.md)** · **[CHANGELOG.md](CHANGELOG.md)**
+
+**`SOUL.md` is canonical**.
+
+## What this project is
+
+Single-file visual Python builder (`index.html`) + optional Electron shell + static landing. No React/webpack for the core app. Blockly + Pyodide + localStorage.
+
+## Before you ship any change
+
+Run Section **0** of SOUL (15-point pre-delivery checklist), then:
+
+```bash
+npm test
+# or: cd tests && npm test
+# headless only (no Chromium):     SKIP_BROWSER=1
+# UI load only (no Pyodide download): SKIP_PYODIDE=1
+# refresh example fixtures:         UPDATE_FIXTURES=1
+```
+
+Expect **0 failures**. First full run may download Pyodide (~7MB) and take 1–3 minutes.
+
+## Layout (keep in sync with vision §5)
+
+| Path                       | Role                                       |
+| -------------------------- | ------------------------------------------ |
+| `index.html`               | Full web app                               |
+| `landing.html`             | Marketing entry                            |
+| `electron/`                | Desktop wrapper                            |
+| `docs/`                    | User guide, FAQ, block ref, hosting        |
+| `tests/smoke.mjs`          | Generators, examples, DOM, Playwright load |
+| `tests/fixtures/examples/` | Example Python snapshots                   |
+
+## Delivery packaging (SOUL §29)
+
+Every handoff to the human director should include: what/why, file list, how to verify (`npm test` + open `index.html`), risks, and suggested commit message(s). No stubs, no “polish later.”
+
+Canonical latest handoff: **[MANIFEST.md](MANIFEST.md)** (must match current product version).

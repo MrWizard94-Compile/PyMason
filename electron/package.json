@@ -1,0 +1,59 @@
+{
+  "name": "pymason",
+  "version": "1.5.0",
+  "description": "PyMason — Building Code. Logically. A visual, block-based Python coding platform.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build-win": "electron-builder --win",
+    "build-mac": "electron-builder --mac",
+    "build-linux": "electron-builder --linux",
+    "dist": "electron-builder --win --publish never"
+  },
+  "author": "Wizard Productions AI Studio",
+  "license": "UNLICENSED",
+  "copyright": "© 2026 Wizard Productions AI Studio. All Rights Reserved.",
+  "private": true,
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.pymason.app",
+    "productName": "PyMason",
+    "copyright": "© 2026 Wizard Productions AI Studio. All Rights Reserved.",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "../index.html",
+      "../PyMason.png"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "../PyMason.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "../PyMason.png"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "../PyMason.png"
+    },
+    "nsis": {
+      "oneClick": true,
+      "allowToChangeInstallationDirectory": false
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "MrWizard94-Compile",
+        "repo": "PyMason",
+        "releaseType": "release"
+      }
+    ]
+  }
+}

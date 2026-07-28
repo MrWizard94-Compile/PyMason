@@ -1,0 +1,16 @@
+{
+  "name": "pymason",
+  "version": "1.5.0",
+  "private": true,
+  "description": "PyMason — visual block-based Python builder",
+  "author": "Wizard Productions AI Studio",
+  "license": "UNLICENSED",
+  "copyright": "© 2026 Wizard Productions AI Studio. All Rights Reserved.",
+  "scripts": {
+    "test": "npm --prefix tests test",
+    "smoke": "npm --prefix tests test",
+    "serve": "python -m http.server 8080",
+    "desktop": "npm --prefix electron start",
+    "desktop:build": "npm --prefix electron run dist"
+  }
+}

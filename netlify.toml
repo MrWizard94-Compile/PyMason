@@ -1,0 +1,41 @@
+# Netlify static deploy for PyMason
+# Publish the repository root (landing + app + docs).
+
+[build]
+  publish = "."
+  command = "echo No build required"
+
+# Marketing home
+[[redirects]]
+  from = "/"
+  to = "/landing.html"
+  status = 200
+
+# App alias
+[[redirects]]
+  from = "/app"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/home"
+  to = "/landing.html"
+  status = 200
+
+# Cross-origin isolation for SharedArrayBuffer (worker input + worker debugger).
+# If a third-party CDN fails under COEP, remove this block — app falls back.
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Embedder-Policy = "require-corp"
+    Cross-Origin-Resource-Policy = "cross-origin"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

@@ -1,0 +1,17 @@
+{
+  "name": "pymason-tests",
+  "private": true,
+  "version": "0.4.0",
+  "type": "module",
+  "description": "Smoke tests for PyMason: generators, examples, DOM contract, page load",
+  "scripts": {
+    "test": "node smoke.mjs",
+    "smoke": "node smoke.mjs",
+    "test:update-fixtures": "node -e \"process.env.UPDATE_FIXTURES='1'; require('child_process').spawnSync('node',['smoke.mjs'],{stdio:'inherit',env:process.env})\""
+  },
+  "dependencies": {
+    "blockly": "12.5.1",
+    "jsdom": "^29.1.1",
+    "playwright": "^1.61.1"
+  }
+}

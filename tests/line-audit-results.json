@@ -1,0 +1,368 @@
+{
+  "counts": {
+    "MED": 19,
+    "LOW": 10,
+    "INFO": 4,
+    "OK": 10
+  },
+  "regions": [
+    [
+      "HEAD / CDN scripts",
+      1,
+      14
+    ],
+    [
+      "CSS theme + layout",
+      15,
+      857
+    ],
+    [
+      "HTML shell (header/main/panels)",
+      859,
+      1012
+    ],
+    [
+      "Toolbox XML",
+      1013,
+      1730
+    ],
+    [
+      "Custom block definitions + generators",
+      1732,
+      4607
+    ],
+    [
+      "Theme + workspace inject",
+      4608,
+      4700
+    ],
+    [
+      "Tooltips / updateCode / highlight",
+      4700,
+      5200
+    ],
+    [
+      "Pyodide execution",
+      5160,
+      5660
+    ],
+    [
+      "Shortcuts / warnings / workspaces",
+      5660,
+      6080
+    ],
+    [
+      "Examples + welcome",
+      6080,
+      6700
+    ],
+    [
+      "AI chat + version + Electron",
+      6700,
+      7034
+    ]
+  ],
+  "findings": [
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 3,
+      "title": "No CSP meta tag",
+      "detail": "Rely on host headers; documented in docs/hosting.md"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 2300,
+      "title": "py_import: free-text → Python AST injection surface",
+      "detail": "module via dropdown/custom — expected for visual builder; generates invalid Python if user types junk"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 2323,
+      "title": "py_from_import: free-text → Python AST injection surface",
+      "detail": "NAME field free text — expected for visual builder; generates invalid Python if user types junk"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 2992,
+      "title": "py_decorator: free-text → Python AST injection surface",
+      "detail": "NAME free text — expected for visual builder; generates invalid Python if user types junk"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 3255,
+      "title": "py_class: free-text → Python AST injection surface",
+      "detail": "NAME/PARENT unvalidated identifiers — expected for visual builder; generates invalid Python if user types junk"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 3281,
+      "title": "py_init: free-text → Python AST injection surface",
+      "detail": "PARAMS unvalidated — expected for visual builder; generates invalid Python if user types junk"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 3306,
+      "title": "py_method: free-text → Python AST injection surface",
+      "detail": "NAME/PARAMS unvalidated — expected for visual builder; generates invalid Python if user types junk"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 3326,
+      "title": "py_self_get: free-text → Python AST injection surface",
+      "detail": "ATTR free text — expected for visual builder; generates invalid Python if user types junk"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 3346,
+      "title": "py_self_set: free-text → Python AST injection surface",
+      "detail": "ATTR free text — expected for visual builder; generates invalid Python if user types junk"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 3368,
+      "title": "py_self_call: free-text → Python AST injection surface",
+      "detail": "method free text — expected for visual builder; generates invalid Python if user types junk"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 3429,
+      "title": "py_instantiate: free-text → Python AST injection surface",
+      "detail": "CLASS/ARGS free text — expected for visual builder; generates invalid Python if user types junk"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 3449,
+      "title": "py_obj_get: free-text → Python AST injection surface",
+      "detail": "ATTR free text — expected for visual builder; generates invalid Python if user types junk"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 3472,
+      "title": "py_obj_call: free-text → Python AST injection surface",
+      "detail": "method free text — expected for visual builder; generates invalid Python if user types junk"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 4484,
+      "title": "py_async_def: free-text → Python AST injection surface",
+      "detail": "NAME/PARAMS free text — expected for visual builder; generates invalid Python if user types junk"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 5214,
+      "title": "Worker input_request prompt always empty string",
+      "detail": "Relies on Pyodide writing prompt to stdout; may be empty on some paths"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 5718,
+      "title": "innerHTML assignment",
+      "detail": "results.innerHTML = '<div style=\"color:#7A6A4A;padding:8px;font-size:13px;\">No blocks found</div>';"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 6780,
+      "title": "API key stored in localStorage",
+      "detail": "Documented; risk on shared machines"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 6869,
+      "title": "innerHTML assignment",
+      "detail": "div.innerHTML = 'Thinking<span>.</span><span>.</span><span>.</span>';"
+    },
+    {
+      "sev": "MED",
+      "file": "index.html",
+      "line": 6955,
+      "title": "Browser Anthropic CORS header",
+      "detail": "Required for client-side key; not multi-tenant safe"
+    },
+    {
+      "sev": "LOW",
+      "file": "index.html",
+      "line": 0,
+      "title": "No prefers-reduced-motion CSS",
+      "detail": "TODO: reduced motion mode"
+    },
+    {
+      "sev": "LOW",
+      "file": "index.html",
+      "line": 1831,
+      "title": "f-string UI shows f\"…\" but generator emits f'…'",
+      "detail": "Cosmetic inconsistency; escaped correctly for single-quoted form"
+    },
+    {
+      "sev": "LOW",
+      "file": "index.html",
+      "line": 2918,
+      "title": "py_return has no setNextStatement",
+      "detail": "Intentional for bare return end-of-branch; cannot stack blocks after return"
+    },
+    {
+      "sev": "LOW",
+      "file": "index.html",
+      "line": 5687,
+      "title": "innerHTML with static/template UI",
+      "detail": "dialog.innerHTML = `"
+    },
+    {
+      "sev": "LOW",
+      "file": "index.html",
+      "line": 5859,
+      "title": "innerHTML with static/template UI",
+      "detail": "popup.innerHTML ="
+    },
+    {
+      "sev": "LOW",
+      "file": "index.html",
+      "line": 6026,
+      "title": "innerHTML with static/template UI",
+      "detail": "dialog.innerHTML = html;"
+    },
+    {
+      "sev": "LOW",
+      "file": "index.html",
+      "line": 6683,
+      "title": "innerHTML with static/template UI",
+      "detail": "dialog.innerHTML = html;"
+    },
+    {
+      "sev": "LOW",
+      "file": "index.html",
+      "line": 6699,
+      "title": "innerHTML with static/template UI",
+      "detail": "overlay.innerHTML = `"
+    },
+    {
+      "sev": "LOW",
+      "file": "index.html",
+      "line": 6729,
+      "title": "innerHTML with static/template UI",
+      "detail": "hint.innerHTML = '<span class=\"hint-arrow\">\\u2190</span><span class=\"hint-text\">Try dragging a <stro"
+    },
+    {
+      "sev": "LOW",
+      "file": "index.html",
+      "line": 6798,
+      "title": "innerHTML with static/template UI",
+      "detail": "setup.innerHTML = `"
+    },
+    {
+      "sev": "INFO",
+      "file": "index.html",
+      "line": 85,
+      "title": "Many .btn instances (~26)",
+      "detail": "Header may overflow on small screens"
+    },
+    {
+      "sev": "INFO",
+      "file": "index.html",
+      "line": 5430,
+      "title": "var inspector list (escapeHtml used)",
+      "detail": "list.innerHTML = '<span class=\"var-empty\">No user variables to show</span>';"
+    },
+    {
+      "sev": "INFO",
+      "file": "index.html",
+      "line": 5432,
+      "title": "var inspector list (escapeHtml used)",
+      "detail": "list.innerHTML = keys.map(k =>"
+    },
+    {
+      "sev": "INFO",
+      "file": "index.html",
+      "line": 6996,
+      "title": "Version",
+      "detail": "0.2.4"
+    },
+    {
+      "sev": "OK",
+      "file": "tests/smoke.mjs",
+      "line": 0,
+      "title": "Smoke includes Pyodide/Hello path",
+      "detail": ""
+    },
+    {
+      "sev": "OK",
+      "file": "electron/main.js",
+      "line": 17,
+      "title": "contextIsolation true",
+      "detail": ""
+    },
+    {
+      "sev": "OK",
+      "file": "electron/main.js",
+      "line": 18,
+      "title": "nodeIntegration false",
+      "detail": ""
+    },
+    {
+      "sev": "OK",
+      "file": "index.html",
+      "line": 932,
+      "title": "Output aria-live present",
+      "detail": ""
+    },
+    {
+      "sev": "OK",
+      "file": "index.html",
+      "line": 2945,
+      "title": "py_global: uses getVariableName — OK",
+      "detail": ""
+    },
+    {
+      "sev": "OK",
+      "file": "index.html",
+      "line": 5294,
+      "title": "Stop settles run promise",
+      "detail": ""
+    },
+    {
+      "sev": "OK",
+      "file": "index.html",
+      "line": 5307,
+      "title": "No-SAB falls back to main thread",
+      "detail": ""
+    },
+    {
+      "sev": "OK",
+      "file": "index.html",
+      "line": 5545,
+      "title": "Empty input wake protocol",
+      "detail": ""
+    },
+    {
+      "sev": "OK",
+      "file": "index.html",
+      "line": 6851,
+      "title": "addChatMessage escapes HTML",
+      "detail": ""
+    },
+    {
+      "sev": "OK",
+      "file": "index.html",
+      "line": 7026,
+      "title": "Open .py is reference dump",
+      "detail": ""
+    }
+  ]
+}
