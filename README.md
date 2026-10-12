@@ -6,10 +6,10 @@ A visual, block-based Python builder powered by [Google Blockly](https://develop
 
 ### Start here (humans & AIs)
 
-1. **[SOUL.md](SOUL.md)** — Empire constitution (how work must be delivered)  
-2. **[AGENTS.md](AGENTS.md)** — Project onboarding pointer  
-3. **[PYMASON_VISION.md](PYMASON_VISION.md)** — Product vision  
-4. `npm test` after any change
+1. **[AGENTS.md](AGENTS.md)** — PyMason project law and the pinned WPAI Constitution source  
+2. **[PYMASON_VISION.md](PYMASON_VISION.md)** — Product vision  
+3. **[PYMASON_TODO.md](PYMASON_TODO.md)** — Open product work  
+4. Run `npm test` after any change; do not skip its browser or Pyodide tiers for delivery acceptance.
 
 ![PyMason](PyMason.png)
 
@@ -102,11 +102,21 @@ PyMason/
 ## Tests
 
 ```bash
-cd tests && npm install && npx playwright install chromium
-npm test                 # from repo root or tests/
-# SKIP_BROWSER=1 npm test
-# UPDATE_FIXTURES=1 npm test   # refresh tests/fixtures/examples/*.py
+cd tests
+npm ci
+npx playwright install chromium
+cd ..
+npm --prefix tests audit --audit-level=low
+npm test
 ```
+
+The full browser and Pyodide tiers are part of acceptance. `SKIP_BROWSER`,
+`SKIP_PYODIDE`, and `UPDATE_FIXTURES` are diagnostic/fixture-maintenance modes,
+not delivery gates. `tests/package.json` makes Blockly 12.5.1 reuse the
+already-tested jsdom 29 dependency via npm's `$jsdom` override: Blockly's own
+jsdom 26 pin otherwise installs deprecated `whatwg-encoding`. The locked tree
+and full smoke suite validate this targeted compatibility override; remove it
+when a future Blockly upgrade no longer requires it.
 
 Smoke suite (`tests/smoke.mjs`):
 

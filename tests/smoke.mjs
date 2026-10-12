@@ -673,7 +673,7 @@ async function tierBrowser(html) {
     });
     const page = await context.newPage();
     const pageErrors = [];
-    page.on('pageerror', (err) => pageErrors.push(String(err.message || err)));
+    page.on('pageerror', (err) => pageErrors.push(String(err.stack || err.message || err)));
 
     const resp = await page.goto(base + '/index.html', {
       waitUntil: 'domcontentloaded',
@@ -685,8 +685,14 @@ async function tierBrowser(html) {
     if (await page.locator('#loginGate').isVisible().catch(() => false)) {
       await page.fill('#loginUser', 'studio');
       await page.fill('#loginPass', 'wpai-forge');
+      // The free-trial consent checkbox is required. A login attempt without
+      // consent must not enter the app, even with otherwise valid credentials.
       await page.click('#loginForm button[type="submit"]');
-      await page.waitForTimeout(600);
+      ok((await page.locator('#loginGate').isVisible()) &&
+        !(await page.locator('#appShell').evaluate((el) => el.classList.contains('visible'))),
+        'Login remains gated until feedback consent is given');
+      await page.locator('#loginFeedbackAgree').check();
+      await page.click('#loginForm button[type="submit"]');
     }
     await page.locator('#appShell.visible').waitFor({ state: 'visible', timeout: 10000 }).catch(() => {});
     ok(await page.locator('#appShell').evaluate((el) => el.classList.contains('visible')).catch(() => false),
@@ -794,22 +800,9 @@ async function tierBrowser(html) {
       'Landing mentions WPAI / privacy framing'
     );
 
-    // Blockly field noise during load can emit VALUE-access races; only fail on unique serious errors
-    if (pageErrors.length) {
-      const serious = pageErrors.filter(
-        (e) =>
-          !/favicon/i.test(e) &&
-          !/reading 'VALUE'/i.test(e) &&
-          !/ResizeObserver/i.test(e) &&
-          !/SharedArrayBuffer/i.test(e)
-      );
-      const valueNoise = pageErrors.filter((e) => /reading 'VALUE'/i.test(e)).length;
-      if (valueNoise) console.log(`  note: ${valueNoise} Blockly field VALUE races during load (non-fatal)`);
-      ok(serious.length === 0, `No serious page errors: ${serious.join(' | ') || 'none'}`);
-      if (serious.length) serious.forEach((e) => console.error('   pageerror:', e));
-    } else {
-      ok(true, 'No serious page errors');
-    }
+    // An uncaught page error is a product defect, including Blockly API drift.
+    ok(pageErrors.length === 0, `No page errors (${pageErrors.length})`);
+    pageErrors.slice(0, 5).forEach((e) => console.error('   pageerror:', e));
   } catch (e) {
     ok(false, 'Browser tier: ' + e.message);
   } finally {

@@ -9659,7 +9659,7 @@ _json.dumps(_vars)
                 if (!block.isEnabled() || block.getInheritedDisabled()) return;
                 let hasMissing = false;
                 for (const input of block.inputList) {
-                    if (input.type === Blockly.inputTypes.VALUE && input.connection) {
+                    if (input.type === Blockly.INPUT_VALUE && input.connection) {
                         if (!input.connection.isConnected() && !input.connection.getShadowDom() &&
                             !input.connection.targetBlock()) {
                             hasMissing = true;

@@ -5,6 +5,9 @@
 **Scope:** Product completeness, block library integrity, runtime execution, IDE/UX, security, Electron, docs consistency  
 **Auditor:** automated + manual code review  
 
+Historical snapshot: findings and version claims below describe the 2026-07-13
+audit, not current acceptance. Current binding law is linked from `AGENTS.md`.
+
 ---
 
 ## Executive summary
