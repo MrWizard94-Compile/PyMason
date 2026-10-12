@@ -376,9 +376,8 @@ PyMason/
 ├── README.md
 ├── CHANGELOG.md
 ├── AUDIT.md                   ← Full audit findings
-├── SOUL.md                    ← Empire constitution v2 (canonical)
-├── SOULv2.0.0.md              ← Versioned copy of SOUL
-├── AGENTS.md                  ← Start-here for AIs / directors
+├── AGENTS.md                  ← Project law; pointer to pinned WPAI Constitution
+├── .github/workflows/ci.yml   ← Pinned source and full smoke gate
 ├── PYMASON_VISION.md          ← This document
 ├── PYMASON_TODO.md            ← Task checklist
 ├── docs/

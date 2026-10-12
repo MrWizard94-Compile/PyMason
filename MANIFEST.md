@@ -1,5 +1,8 @@
 # Delivery MANIFEST — v1.5.0
 
+Historical delivery record. The SOUL references below describe the July 2026
+handoff; they are not active law or current migration acceptance evidence.
+
 **Title:** Even-more blocks + SOUL documentation alignment  
 **Date:** 2026-07-14  
 **One sentence:** Seven stdlib-flavored toolbox categories (~65 generators) shipped at product **1.5.0**, with docs, versions, and §29 handoff synchronized to SOUL.md.
